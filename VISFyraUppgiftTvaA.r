@@ -3,7 +3,7 @@ library("GGally")
 data <- read.csv("https://raw.githubusercontent.com/vriken/VIS4/master/VIS4Oljor.csv")
 #här importerar vi våran data 
 ggparcoord(data = data,
-           col = 3:11,
+           col = c(7,8,4,11), # för uppgift två b använder vi "col = c(7,11,8,9)"       col = 4:11
            groupColumn = "Region",
            scale = "uniminmax",
            alphaLines = .2)+ # här skapar vi ett ggparcoord objekt
@@ -20,12 +20,14 @@ ggparcoord(data = data,
           element_text(angle = 0,
                        hjust = 1,
                        vjust = .5,
-                       size = 14),
-        axis.title.x = 
-          element_text(size = 14),
+                       size = 20),
+        axis.text.y = 
+          element_text(size = 18),
+        axis.title.x =
+          element_text(size = 20),
         plot.title =
           element_text(hjust = .5,
-                       size = 15,
+                       size = 20,
                        face = "bold"),
         panel.grid.major.x =
           element_line(color = "grey"),
@@ -36,23 +38,26 @@ ggparcoord(data = data,
         panel.grid.minor.y =
           element_line(color = "light grey"),
         axis.text.x =
-          element_text(size = 11,
+          element_text(size = 20,
                        angle = -15,
                        color = "black"),
         plot.caption = 
           element_text(hjust = 0,
                        face = "italic",
-                       size = 9),
+                       size = 15),
         legend.key.size = 
           unit(1.5, "line"),
         legend.text =
-          element_text(size = 12),
+          element_text(size = 20),
         legend.title = 
-          element_text(size = 15,
+          element_text(size = 20,
                        face = "bold")) +
   #här sätter vi titlar, och axel-namn
-  labs(title = "Parallellkoordinatdiagram över halten av olika syror i italienska olivoljor",
-       x = "Variabel",
-       y = "Värde",
+  labs(title = "Parallellkoordinatdiagram över halten av olika syror i Italienska olivoljor",
+       x = "Syror",
+       y = "Halt i %",
        caption = "Källa: Forina, Armanino, Lanteri, Tiscornia (1983) Classification of Olive Oils from
-their Fatty Acid Composition, in Martens and Russwurm (ed) Food Research and Data Analysis.")
+their Fatty Acid Composition, in Martens and Russwurm (ed) Food Research and Data Analysis.") +
+  scale_y_continuous(labels = 
+                       scales::percent_format(accuracy = 1))
+#här ändrar vi så att y-skalan visas i procent
