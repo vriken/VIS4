@@ -9,7 +9,9 @@ data <- na.omit(data)
 #Import och export medelvärden
 data_agg <- data %>% group_by(Land) %>% summarise(import_mean = mean(Import..MKr.), 
                                                      export_mean = mean(Export..MKr.))
-#på rad 16-23 ropar vi på våran treemap_brewer funktion med relevant data,
+#data_agg <- data_agg[!(data_agg$import_mean > 11 & data_agg$export_mean > 11),] 
+#på rad 12 så använder vi denna kod för att visa de länder som har en mindre export och import i sin egen graf
+#på rad 18-25 ropar vi på våran treemap_brewer funktion med relevant data,
 #så att storleken (area) utgörs av den aggregerade datans import-medelvärde
 #och färgen utgörs av den aggregerade datans export-medelvärde
 #vi sätter också färgtema, och liknande
